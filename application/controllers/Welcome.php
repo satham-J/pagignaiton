@@ -29,4 +29,13 @@ class Welcome extends CI_Controller {
 		$query=$this->db->get_where('sample_table',array(),$per_page,$start);
 		return $query->result_array(); 
 	}
+
+	public function form(){
+		$this->form_validation->set_rules('name','Name','required');
+		$this->form_validation->set_rules('date','Date','required');
+		if (!$this->form_validation->run() == FALSE) {
+			echo 'Validation Success'; exit;
+		}
+		$this->load->view('form');
+	}
 }
